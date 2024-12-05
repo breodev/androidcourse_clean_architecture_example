@@ -26,10 +26,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.cleanarchitectureexample.presentation.viewmodel.UserViewModel
 
 @Composable
-fun UserProfileApp(userViewModel: UserViewModel) {
+fun UserProfileApp() {
+    val userViewModel: UserViewModel = hiltViewModel()
+    UserProfileScreen(userViewModel)
+}
+
+@Composable
+fun UserProfileScreen(userViewModel: UserViewModel) {
     val context = LocalContext.current
     val user by userViewModel.user.observeAsState()
     val isLoading by userViewModel.isLoading.observeAsState(false)
